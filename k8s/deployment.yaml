@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auditorium-booking-frontend
+  namespace: project-namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auditorium-booking-frontend
+  template:
+    metadata:
+      labels:
+        app: auditorium-booking-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: nexus-service-for-docker-hosted-registry.nexus.svc.cluster.local:8085/project-namespace/auditorium-booking-frontend:latest
+        ports:
+        - containerPort: 80
