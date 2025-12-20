@@ -27,13 +27,16 @@ spec:
       subPath: kubeconfig
 
   - name: dind
-    image: docker:dind
-    securityContext:
-      privileged: true
-    env:
-    - name: DOCKER_TLS_CERTDIR
-      value: ""
-    tty: true
+  image: docker:dind
+  securityContext:
+    privileged: true
+  env:
+  - name: DOCKER_TLS_CERTDIR
+    value: ""
+  - name: DOCKER_OPTS
+    value: "--insecure-registry=nexus-service-for-docker-hosted-registry.nexus.svc.cluster.local:8085"
+  tty: true
+
 
   volumes:
   - name: kubeconfig-secret
