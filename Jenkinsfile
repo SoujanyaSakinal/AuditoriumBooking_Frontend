@@ -29,12 +29,15 @@ spec:
   - name: dind
     image: docker:dind
     securityContext:
-      privileged: true
+        privileged: true
+    command:
+        - dockerd
+        - "--host=tcp://127.0.0.1:2375"
+        - "--host=unix:///var/run/docker.sock"
+        - "--insecure-registry=nexus-service-for-docker-hosted-registry.nexus.svc.cluster.local:8085"
     env:
-    - name: DOCKER_TLS_CERTDIR
-      value: ""
-    - name: DOCKER_OPTS
-      value: "--insecure-registry=nexus-service-for-docker-hosted-registry.nexus.svc.cluster.local:8085"
+        - name: DOCKER_TLS_CERTDIR
+          value: ""
     tty: true
 
   volumes:
