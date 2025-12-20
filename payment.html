@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment Page</title>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const bookingStr = localStorage.getItem("currentBooking");
+
+      if (!bookingStr) {
+        alert("Missing booking info. Please start from beginning.");
+        window.location.href = "bookings.html";
+        return;
+      }
+
+      const booking = JSON.parse(bookingStr);
+
+      if (!booking.package) {
+        alert("Package not selected.");
+        window.location.href = "packages.html";
+        return;
+      }
+
+      // Amount mapping
+      const amountMap = {
+        "Basic Package": 1999,
+        "Premium Package": 2999,
+        "Luxury Package": 3999
+      };
+
+      const amount = amountMap[booking.package.name] || 0;
+      document.getElementById("amount").innerText = amount;
+
+      // Show QR code
+      document.getElementById("generate-payment-btn")
+        .addEventListener("click", () => {
+          document.getElementById("qr-container").style.display = "block";
+        });
+
+      // Dummy payment
+      window.processDummyPayment = () => {
+        alert("Payment successful! 🎉\nBooking confirmed.");
+
+        console.log("Final Booking:", booking);
+
+        // Optional: store confirmed bookings
+        let confirmed = JSON.parse(localStorage.getItem("confirmedBookings")) || [];
+        confirmed.push(booking);
+        localStorage.setItem("confirmedBookings", JSON.stringify(confirmed));
+
+        // // Clear current booking
+        // localStorage.removeItem("currentBooking");
+
+        window.location.href = "confirmation.html";
+      };
+    });
+  </script>
+
+  <style>
+    h1 {
+      font-size: 3rem;
+      color: whitesmoke;
+      text-shadow: 4px 4px 5px rgb(42, 37, 49);
+      margin-top: 200px;
+    }
+    #statement {
+      color: rgb(243, 244, 248);
+      font-family: 'Times New Roman';
+      font-size: 1.5rem;
+      text-shadow: 4px 4px 5px rgb(0, 0, 0);
+    }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background-image: url('Auditorium_bg_2.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+    }
+    .qr-container {
+      margin-top: 20px;
+      display: none;
+      color: white;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #10116e;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Payment Portal</h1>
+  <p id="statement">Click below to view payment details</p>
+
+  <button id="generate-payment-btn">Show Payment Info</button>
+
+  <div class="qr-container" id="qr-container">
+    <h2>Complete Your Payment</h2>
+    <p>Amount: ₹ <span id="amount"></span></p>
+    <button onclick="processDummyPayment()">Pay Now</button>
+  </div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+
+    body{
+      background-image: url('Auditorium_bg_2.jpeg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            height: 100vh;
+    }
+    h1{
+      display:grid;
+      padding-left: 32.4%;
+      align-items:center;
+      color: whitesmoke;
+      margin-bottom:100px;
+      font-size: 3.5rem;
+      text-shadow:5px 5px 8px rgb(234, 247, 252);
+    }
+    #calendar {
+      margin-top:0;
+      display: grid;
+      align-items: center;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+      padding-left: 500px;
+      padding-right: 500px;
+      padding-top: 10px;
+      margin-top: 10px; /* Reduce the gap between the heading and calendar */
+    } 
+
+    #book-slot-btn{
+      color:rgb(0, 0, 0);
+      background-color: #4bef45;
+      cursor: pointer;
+      width: 10%; /* Button will take 80% of the parent element's width */
+      height: auto; /* Adjust height automatically */
+      font-size: 1.2rem;
+      border-radius: 8px;
+      box-shadow:5px 5px 8px rgb(53, 52, 52);
+    }
+
+    #prev-month{
+      color:black;
+      background-color:  rgb(114, 196, 234);
+      width: 10%; /* Button will take 80% of the parent element's width */
+      height: auto; /* Adjust height automatically */
+      font-size: 1.2rem; /* Relative font size */
+      margin-right:20px;
+      border-radius: 8px;
+      box-shadow:5px 5px 8px rgb(53, 52, 52);
+      cursor:pointer;
+    }
+
+    #controls{
+      display: flex;
+      justify-content: center;
+      align-items:center;
+      color:whitesmoke;
+      font-size:1.5rem;
+      margin-bottom:0;
+      padding:0;
+    }
+
+    #next-month{
+      color:black;
+      background-color: rgb(114, 196, 234);
+      width: 10%; /* Button will take 80% of the parent element's width */
+      height: auto; /* Adjust height automatically */
+      font-size: 1.2rem; /* Relative font size */
+      margin-left:20px;
+      border-radius: 8px;
+      box-shadow:5px 5px 8px rgb(53, 52, 52);
+      cursor: pointer;
+    }
+
+    #selected-date{
+      margin-top: 45px; 
+      text-align: center; 
+      font-weight: bold;
+      font-size: 1.5rem;
+      text-decoration:underline ;
+    }
+   
+ 
+    .day {
+      padding: 10px;
+      background-color: #f9f9f9;
+      border: 3px solid #dcdeee;
+      text-align: center;
+      border-radius: 8px; /* Rounded corners for day cells */
+    }
+    .booked {
+      background-color: #fd7979;
+    }
+    .available {
+      background-color: #dbfedb;
+      cursor: pointer;
+    }
+    .available:hover {
+      background-color: #d4f7d4;
+    }
+
+    #time-slot-container {
+      margin-top: 20px;
+      text-align: center;
+    } 
+
+    #time-slot {
+      margin-top: 10px;
+      padding: 8px;
+      font-size: 1.0rem;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+  
+    #logout_btn{
+      color:black;
+      background-color: rgb(114, 196, 234);
+      width: 10%; 
+      height: auto; 
+      font-size: 1.2rem; 
+      margin-left:87%;
+      margin-top:90px;
+      border-radius: 8px;
+      box-shadow:5px 5px 8px rgb(53, 52, 52);
+      cursor: pointer;
+    }
+    #userGreeting{
+      text-align:center; 
+      margin-left:50px;
+      font-size:25px; 
+      color: #ffffff;
+    }
+

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar</title>
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/moment"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+  <link rel="stylesheet" href="bookings.css">
+  <script src="bookings.js"></script> 
+</head>
+<script>
+  window.onload = function () {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    const username = localStorage.getItem("username");
+
+    if (!isLoggedIn || isLoggedIn !== "true") {
+      alert("You need to login first.");
+      window.location.href = "login.html";
+      return;
+    }
+
+    document.getElementById("userGreeting").innerText =
+      `Welcome, ${username}! 😊`;
+  };
+
+  function logout() {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("username");
+    localStorage.removeItem("user"); // optional
+    window.location.href = "login.html";
+  }
+</script>
+<body>
+  <!-- Date Slot -->
+  <div id="calendar-container">
+    <h1>Book Auditorium Slot</h1>
+    <div id="controls">
+      <button id="prev-month">Previous</button>
+      <span id="month-year"></span>
+      <button id="next-month">Next</button>
+    </div>
+    <div id="calendar"></div>
+    <div id="selected-date"></div>
+  </div>
+
+  <!-- Time Slot -->
+  <div id="time-slot-container" style="display: none;">
+    <label for="time-slot"><b style="font-size: 22px;">Select Time Slot:</b></label>
+    <select id="time-slot">
+      <option value="">Select Time Slot</option>
+    </select>
+    <br><br>
+    <button id="book-slot-btn">Book Slot</button></a>
+  </div>
+  
+   <!-- Welcome message -->
+   <h2 id="userGreeting"></h2>
+   <button onclick="logout()" id= "logout_btn">Logout</button>
+
+</body>
+</html>

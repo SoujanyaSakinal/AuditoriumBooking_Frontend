@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Booking Confirmation</title>
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #4e54c8, #8f94fb);
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+      padding-top: 80px;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.45);
+      padding: 40px 50px;
+      border-radius: 20px;
+      display: inline-block;
+      min-width: 420px;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      margin-bottom: 20px;
+    }
+
+    .info {
+      text-align: left;
+      margin-top: 20px;
+      font-size: 1.2rem;
+    }
+
+    .info p {
+      margin: 12px 0;
+    }
+
+    .label {
+      color: #ffd369;
+      font-weight: bold;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 25px;
+      background-color: #ffffff;
+      color: #4e54c8;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    a:hover {
+      background-color: #e0e0e0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>🎉 Booking Confirmed!</h1>
+
+    <div class="info">
+      <p><span class="label">User:</span> <span id="username"></span></p>
+      <p><span class="label">Date:</span> <span id="date"></span></p>
+      <p><span class="label">Time Slot:</span> <span id="timeSlot"></span></p>
+      <p><span class="label">Package:</span> <span id="package"></span></p>
+      <p><span class="label">Amount:</span> ₹ <span id="price"></span></p>
+    </div>
+
+    <a href="bookings.html">📅 Book Another Slot</a>
+  </div>
+
+  <script>
+    const bookingStr = localStorage.getItem("currentBooking");
+
+    if (!bookingStr) {
+      alert("No booking found.");
+      window.location.href = "bookings.html";
+    } else {
+      const booking = JSON.parse(bookingStr);
+
+      document.getElementById("username").innerText = booking.username;
+      document.getElementById("date").innerText = booking.date;
+      document.getElementById("timeSlot").innerText = booking.timeSlot;
+      document.getElementById("package").innerText = booking.package.name;
+      document.getElementById("price").innerText = booking.package.price;
+    }
+
+    // Optional cleanup after confirmation
+    localStorage.removeItem("currentBooking");
+  </script>
+</body>
+</html>

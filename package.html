@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auditorium Booking Packages</title>
+    <link rel="stylesheet" href="packagestyle.css">
+</head>
+<body>
+    <div class="container">
+        <div class="packages-grid">
+            <!-- Basic Package -->
+            <div class="package-card">
+                <div class="package-header">
+                    <h2 class="package-name">Basic Package</h2>
+                    <div class="package-price">1,999rs/-</div>
+                </div>
+                <ul class="package-features">
+                    <li>✓ Auditorium Access (Up to 2 hours)</li>
+                    <li>✓ Basic Lighting Setup</li>
+                    <li>✓ Standard Sound System</li>
+                    <li>✓ Basic Stage Decoration</li>
+                    <li>✓ Basic Technical Support</li>
+                    <li>✓ Standard Cleaning Service</li>
+                </ul>
+                <button class="select-package" data-link="payment.html">Select Basic Package</button></a>
+            </div>
+
+            <!-- Medium Package -->
+            <div class="package-card">
+                <div class="package-header">
+                    <h2 class="package-name">Premium Package</h2>
+                    <div class="package-price">2,999rs/-</div>
+                </div>
+                <ul class="package-features">
+                    <li>✓ Auditorium Access (Up to 2 hours)</li>
+                    <li>✓ Advanced Lighting System</li>
+                    <li>✓ Professional Sound System</li>
+                    <li>✓ Themed Stage Decoration</li>
+                    <li>✓ Dedicated Technical Team</li>
+                    <li>✓ Green Room Access</li>
+                    <li>✓ Catering Service Available</li>
+                </ul>
+                <button class="select-package" data-link="payment.html">Select Premium Package</button></a>
+            </div>
+
+            <!-- Premium Package -->
+            <div class="package-card">
+                <div class="package-header">
+                    <h2 class="package-name">Luxury Package</h2>
+                    <div class="package-price">3,999rs/-</div>
+                </div>
+                <ul class="package-features">
+                    <li>✓ Premium Lighting & Effects</li>
+                    <li>✓ High-End Sound System</li>
+                    <li>✓ Custom Theme Decoration</li>
+                    <li>✓ VIP Green Room Access</li>
+                    <li>✓ Professional Event Coordinator</li>
+                    <li>✓ Premium Catering Options</li>
+                    <li>✓ Photography & Videography</li>
+                </ul>
+                <button class="select-package" data-link="payment.html">Select Luxury Package</button></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+      
+            let bookingStr = localStorage.getItem("currentBooking");
+
+            if (!bookingStr) {
+                alert("Booking info missing. Please start from booking page.");
+                window.location.href = "bookings.html";
+                return;
+            }
+
+            const booking = JSON.parse(bookingStr);
+
+      
+            document.querySelectorAll(".select-package").forEach(button => {
+                button.addEventListener("click", function () {
+        
+                const packageCard = this.closest(".package-card");
+        
+                const selectedPackage = {
+                    name: packageCard.querySelector(".package-name").innerText,
+                    price: packageCard.querySelector(".package-price").innerText
+                };
+                booking.package = selectedPackage;
+        
+                localStorage.setItem("currentBooking", JSON.stringify(booking));
+        
+                window.location.href = "payment.html";
+                });
+            });
+        });
+      </script>
+      
+</body>
+</html>

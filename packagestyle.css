@@ -1,0 +1,103 @@
+/* existing reset styles remain the same */
+
+body {
+    background: linear-gradient(135deg, #1a1c4b, #4b1a4b);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('Auditorium_bg_2.jpeg');
+            
+    /* Ensure the image covers the whole page */
+    background-size: cover;
+    
+    /* Position the background image */
+    background-position: center center;
+    
+    /* Make sure the background image doesn't repeat */
+    background-repeat: no-repeat;
+    
+    /* Set the height to fill the screen */
+    height: 100vh;
+}
+
+/* ... keep existing container and packages-grid styles ...*/
+
+.package-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 35px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:5px 5px 8px rgb(40, 37, 48);
+}
+
+.packages-grid {
+    display: flex; /* Use flexbox to align the packages */
+    flex-wrap: wrap; /* Allow wrapping of cards to new lines */
+    justify-content: center; /* Horizontally center the items */
+    align-items: center; /* Vertically center the items */
+    gap: 20px; /* Optional: add space between package cards */
+    margin-right:25px;
+}
+.package-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.package-name {
+    color: #1a1c4b;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.package-price {
+    color: #4b1a4b;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.package-features li {
+    color: #444;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 16px;
+}
+
+.select-package {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #1a1c4b, #4b1a4b);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.select-package:hover {
+    background: linear-gradient(135deg, #4b1a4b, #1a1c4b);
+    transform: scale(1.02);
+}
+
+
+/* Used for scrollbar*/
+.package-features {
+    max-height: 200px; /* Adjust the height to your preference */
+    overflow-y: auto;  /* Enable vertical scrolling */
+    padding-right: 10px; /* Optional: to add space for the scrollbar */
+    list-style-type: none; /* Remove default list styling */
+    margin: 0;
+}
+
+/* Used for scrollbar*/
+.package-features li {
+    color: #444;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 16px;
+}

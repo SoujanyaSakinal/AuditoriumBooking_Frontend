@@ -1,0 +1,36 @@
+h1 {
+  font-size: 3rem;
+  color: whitesmoke;
+  text-shadow: 4px 4px 5px rgb(42, 37, 49);
+  margin-top: 200px;
+}
+#statement {
+  color: rgb(243, 244, 248);
+  font-family: 'Times New Roman';
+  font-size: 1.5rem;
+  text-shadow: 4px 4px 5px rgb(0, 0, 0);
+}
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+  background-image: url('Auditorium_bg_2.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+.qr-container {
+  margin-top: 20px;
+  display: none;
+  color: white;
+}
+button {
+  padding: 10px 20px;
+  background-color: #10116e;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 10px;
+}

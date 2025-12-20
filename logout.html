@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout Confirmation</title>
+    <link rel="stylesheet" href="logout.css">
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="logout-container">
+        <div class="logout-card">
+            <div class="icon-container">
+                <i class="fas fa-sign-out-alt"></i>
+            </div>
+            <h2>Logout Confirmation</h2>
+            <p>Are you sure you want to logout?</p>
+            <div class="button-container">
+                <button class="cancel-btn" onclick="cancelLogout()">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button class="logout-btn" onclick="confirmLogout()">
+                    <i class="fas fa-check"></i> Yes, Logout
+                </button>
+            </div>
+            <div class="user-info">
+                <div class="user-info">
+                    User <span class="user-name">Guest</span>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <script src="logout.js"></script>
+</body>
+</html>
