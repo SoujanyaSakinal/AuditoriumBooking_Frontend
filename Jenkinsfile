@@ -82,7 +82,7 @@ spec:
                             sonar-scanner \
                               -Dsonar.projectKey=$SONAR_PROJECT \
                               -Dsonar.host.url=$SONAR_HOST_URL \
-                              -Dsonar.login=$SONAR_TOKEN
+                              -Dsonar.token=$SONAR_TOKEN
                         '''
                     }
                 }
