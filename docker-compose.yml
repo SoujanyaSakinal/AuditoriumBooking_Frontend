@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  auditorium-frontend:
+    build: .
+    container_name: auditorium_frontend
+    ports:
+      - "8080:80"
+    restart: always
