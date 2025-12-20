@@ -76,7 +76,7 @@ spec:
             steps {
                 container('sonar-scanner') {
                     withCredentials([
-                        string(credentialsId: 'SONAR_TOKEN_ID', variable: 'SONAR_TOKEN')
+                        string(credentialsId: 'sonarqube-2401170', variable: 'SONAR_TOKEN')
                     ]) {
                         sh '''
                             sonar-scanner \
@@ -89,14 +89,22 @@ spec:
             }
         }
 
-        stage('Login to Docker Registry') {
+        stage('Login to Nexus Docker Registry') {
             steps {
                 container('dind') {
-                    sh '''
-                        docker --version
-                        sleep 10
-                        docker login $REGISTRY_URL -u admin -p Changeme@2025
-                    '''
+                    withCredentials([
+                        usernamePassword(
+                            credentialsId: 'nexus-2401170',
+                            usernameVariable: 'NEXUS_USER',
+                            passwordVariable: 'NEXUS_PASS'
+                        )
+                    ]) {
+                        sh '''
+                            docker --version
+                            sleep 10
+                            docker login $REGISTRY_URL -u $NEXUS_USER -p $NEXUS_PASS
+                        '''
+                    }
                 }
             }
         }
