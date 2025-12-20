@@ -102,7 +102,10 @@ spec:
                         sh '''
                             docker --version
                             sleep 10
-                            docker login $REGISTRY_URL -u $NEXUS_USER -p $NEXUS_PASS
+
+                            echo "$NEXUS_PASS" | docker login \
+                            http://nexus-service-for-docker-hosted-registry.nexus.svc.cluster.local:8085 \
+                            -u "$NEXUS_USER" --password-stdin
                         '''
                     }
                 }
