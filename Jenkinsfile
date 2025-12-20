@@ -48,7 +48,7 @@ spec:
         IMAGE_TAG       = "latest"
         REGISTRY_URL    = "nexus-service-for-docker-hosted-registry.nexus.svc.cluster.local:8085"
         REGISTRY_REPO   = "project-namespace"
-        SONAR_PROJECT   = "AuditoriumBooking_Frontend"
+        SONAR_PROJECT   = "2401170_A"
         SONAR_HOST_URL  = "http://my-sonarqube-sonarqube.sonarqube.svc.cluster.local:9000"
     }
 
