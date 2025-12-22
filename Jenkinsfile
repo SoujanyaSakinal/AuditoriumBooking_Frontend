@@ -130,6 +130,16 @@ spec:
                 }
             }
         }
+        stage('Ensure Namespace') {
+            steps {
+                container('kubectl') {
+                    sh '''
+                        kubectl get namespace project-namespace || \
+                        kubectl create namespace project-namespace
+                    '''
+                }
+            }
+        }
 
         stage('Deploy Application') {
             steps {
