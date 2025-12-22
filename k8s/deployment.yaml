@@ -1,8 +1,13 @@
+# -------------------------------
+# Deployment
+# -------------------------------
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: auditorium-booking-frontend
   namespace: project-namespace
+  labels:
+    app: auditorium-booking-frontend
 spec:
   replicas: 1
   selector:
@@ -18,3 +23,45 @@ spec:
         image: nexus-service-for-docker-hosted-registry.nexus.svc.cluster.local:8085/project-namespace/auditorium-booking-frontend:latest
         ports:
         - containerPort: 80
+
+---
+# -------------------------------
+# Service
+# -------------------------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: auditorium-booking-frontend-service
+  namespace: project-namespace
+spec:
+  type: ClusterIP
+  selector:
+    app: auditorium-booking-frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
+---
+# -------------------------------
+# Ingress
+# -------------------------------
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: auditorium-booking-frontend-ingress
+  namespace: project-namespace
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: auditorium.imcc.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: auditorium-booking-frontend-service
+            port:
+              number: 80

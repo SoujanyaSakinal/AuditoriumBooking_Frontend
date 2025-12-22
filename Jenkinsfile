@@ -135,7 +135,7 @@ spec:
             steps {
                 container('kubectl') {
                     sh '''
-                        kubectl apply -f k8s-deployment/deployment.yaml
+                        kubectl apply -f k8s/deployment.yaml
                         kubectl rollout status deployment/$APP_NAME -n project-namespace
                     '''
                 }
