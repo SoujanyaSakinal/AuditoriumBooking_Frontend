@@ -22,6 +22,8 @@ spec:
       containers:
       - name: frontend
         image: nexus-service-for-docker-hosted-registry.nexus.svc.cluster.local:8085/project-namespace/auditorium-booking-frontend:latest
+        imagePullSecrets:
+        - name: nexus-credentials
         imagePullPolicy: Always
         ports:
         - containerPort: 80
