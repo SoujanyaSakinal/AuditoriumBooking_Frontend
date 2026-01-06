@@ -13,6 +13,7 @@ spec:
   selector:
     matchLabels:
       app: auditorium-booking-frontend
+  progressDeadlineSeconds: 1200
   template:
     metadata:
       labels:
@@ -23,6 +24,20 @@ spec:
         image: nexus-service-for-docker-hosted-registry.nexus.svc.cluster.local:8085/project-namespace/auditorium-booking-frontend:latest
         ports:
         - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 10
+      imagePullSecrets:
+      - name: nexus-credentials
 
 ---
 # -------------------------------
