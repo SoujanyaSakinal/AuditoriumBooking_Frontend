@@ -50,7 +50,7 @@ spec:
 
     environment {
         APP_NAME        = "auditorium-booking-frontend"
-        IMAGE_TAG       = "latest"
+        IMAGE_TAG       = "${BUILD_NUMBER}"
         REGISTRY_URL    = "nexus-service-for-docker-hosted-registry.nexus.svc.cluster.local:8085"
         REGISTRY_REPO   = "project-namespace"
         SONAR_PROJECT   = "2401170_A"
@@ -62,18 +62,6 @@ spec:
         stage('Checkout Source Code') {
             steps {
                 checkout scm
-            }
-        }
-
-        stage('Build Docker Image') {
-            steps {
-                container('dind') {
-                    sh '''
-                        sleep 15
-                        docker build -t $APP_NAME:$IMAGE_TAG .
-                        docker images
-                    '''
-                }
             }
         }
 
@@ -117,19 +105,26 @@ spec:
             }
         }
 
-        stage('Build - Tag - Push Image') {
+       stage('Build - Tag - Push Image') {
             steps {
                 container('dind') {
                     sh '''
+                        echo "Building image with tag: $IMAGE_TAG"
+                        sleep 10
+
+                        docker build -t $APP_NAME:$IMAGE_TAG .
+
                         docker tag $APP_NAME:$IMAGE_TAG \
-                          $REGISTRY_URL/$REGISTRY_REPO/$APP_NAME:$IMAGE_TAG
+                        $REGISTRY_URL/$REGISTRY_REPO/$APP_NAME:$IMAGE_TAG
 
                         docker push $REGISTRY_URL/$REGISTRY_REPO/$APP_NAME:$IMAGE_TAG
+
                         docker images
                     '''
                 }
             }
         }
+
         stage('Ensure Namespace') {
             steps {
                 container('kubectl') {
@@ -145,11 +140,15 @@ spec:
             steps {
                 container('kubectl') {
                     sh '''
-                        kubectl apply -f k8s/deployment.yaml
+                        kubectl set image deployment/$APP_NAME \
+                        frontend=$REGISTRY_URL/$REGISTRY_REPO/$APP_NAME:$IMAGE_TAG \
+                        -n project-namespace
+
                         kubectl rollout status deployment/$APP_NAME -n project-namespace
                     '''
                 }
             }
         }
+
     }
 }
